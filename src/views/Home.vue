@@ -1,31 +1,65 @@
 <template>
-  <div class="home">
-    <input v-model="clanTag"/>
-    <input type="submit" v-on:click="search"/>
+  <div class="home page">
+    <UiInputText
+      v-model="clanTag"
+      placeholder="Enter Clan Tag Here"
+      @keyup.enter="onEnter">
+      <div slot="before">
+        <UiBaseIcon 
+          iconName="hashtag" 
+          :width="searchIconWidth"
+          :height="searchIconHeight" 
+          :color="searchIconColor"
+          @click="onClickSearchIcon"/>
+      </div>
+      <div slot="after">
+        <UiBaseIcon 
+          iconName="search" 
+          :width="searchIconWidth" 
+          :height="searchIconHeight" 
+          :color="searchIconColor"
+          @click="onClickSearchIcon"/>
+      </div>
+    </UiInputText>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-// import HelloWorld from '@/components/HelloWorld.vue'
-import axios from 'axios';
+import UiInputText from '@/components/UiInputText'
+import UiBaseIcon from '@/components/icons/UiBaseIcon'
 
 export default {
   name: 'Home',
+  components: {
+    UiInputText,
+    UiBaseIcon
+  },
   data() {
     return {
-      clanTag: "",
-      info: null
+      clanTag: '',
+      info: null,
+      searchIconWidth: '20px',
+      searchIconHeight: '20px',
+      searchIconColor: '#b3b3b3'
     };
   },
   methods: {
     search() {
-      // const clanTag = this.clanTag;
-      const clanTag = `http://localhost:3000/clan/${this.clanTag}`;
-      axios.get(clanTag).then(response => {
-        this.info = response;
-      });
+      this.$router.push({ name: "clan", params: { clanTag: this.clanTag } })
+    },
+    onEnter() {
+      this.search()
+    },
+    onClickSearchIcon() {
+      this.search()
     }
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.home {
+  display: flex;
+  justify-content: center;
+}
+</style>

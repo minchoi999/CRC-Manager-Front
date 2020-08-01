@@ -11,18 +11,15 @@ Vue.use(VueRouter)
     redirect: '/home'
   },
   {
-    path: '/clan',
-    redirect: '/home'
-  },
-  {
     path: '/home',
     name: 'home',
     component: Home
   },
   {
-    path: '/clan/:id',
+    path: '/clan/:clanTag',
     name: 'clan',
-    component: () => import(/* webpackChunkName: "clan" */ '../views/Clan.vue')
+    component: () => import(/* webpackChunkName: "clan" */ '../views/Clan.vue'),
+    props: true
   }
 ]
 
