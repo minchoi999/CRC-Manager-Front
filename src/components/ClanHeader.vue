@@ -3,16 +3,14 @@
     <div class="clan-header-top">
       <div class="clan-header-badge"/>
       <div class="clan-header-info">
-        <div class="clan-header-name">
+        <div class="clan-header-name-tag">
           <h1 class="text"> {{ name }} </h1>
-        </div>
-        <div class="clan-header-tag">
           <h2 class="text"> {{ tag }} </h2>
         </div>
         <div class="clan-header-scores">
           <div class="clan-header-scores-child">
             <div class="clan-header-scores-icon" />
-            <p class="text"> {{ clanScore}} </p>
+            <p class="text"> {{ clanScore }} </p>
           </div>
           <div class="clan-header-scores-child text">
             <div class="clan-header-scores-icon" />
@@ -69,9 +67,8 @@ export default {
 <style lang="scss" scoped> 
 .clan-header {
 
-  .clan-header-top { 
+  .clan-header-top {
     display: flex;
-    justify-content: flex-start;
     .clan-header-badge {
       margin: 5px;
       width: 80px;
@@ -81,13 +78,12 @@ export default {
     .clan-header-info {
       margin: 5px;
       height: 110px;
-
-
-      // display: inline-block;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
 
       .clan-header-scores {
         display: flex;
-        justify-content: flex-start;
         .clan-header-scores-child {
           margin-right: 10px;
           display: flex;
